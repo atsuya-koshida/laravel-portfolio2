@@ -3,5 +3,15 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.2-node-browsers
+      - image: circleci/mysql:5.7
+    environment:
+      - DB_CONNECTION: circle_test
     steps:
-      - run: echo "Hello World"
+      - checkout
+      - run: sudo docker-php-ext-install pdo_mysql
+      - run: composer install -n --prefer-dist
+      - run: npm ci
+      - run: npm run dev
+      - run:
+          name: php test
+          command: vendor/bin/phpunit
