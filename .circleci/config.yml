@@ -4,14 +4,33 @@ jobs:
     docker:
       - image: circleci/php:7.2-node-browsers
       - image: circleci/mysql:5.7
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mysql:9.4
+
     environment:
       - DB_CONNECTION: circle_test
+
     steps:
       - checkout
+
+      # Install PHP Extension
       - run: sudo docker-php-ext-install pdo_mysql
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "composer.json" }}
+
       - run: composer install -n --prefer-dist
+
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-dependencies-{{ checksum "composer.json" }}
+
       - run: npm ci
       - run: npm run dev
-      - run:
-          name: php test
-          command: vendor/bin/phpunit
+      - run: php ./vendor/bin/phpunit
