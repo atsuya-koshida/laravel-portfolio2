@@ -1,0 +1,20 @@
+.custom-checkboxes {
+  position: relative;
+  width: 90%;
+  max-height: 150px;
+  border: 1px solid rgb(181, 181, 181);
+  border-radius: 4px;
+  overflow: scroll;
+  padding: 10px 0;
+  margin: 0 auto;
+
+  label {
+   display: block;
+   margin: 10px;
+
+   input[type=checkbox] {
+     margin-right: 10px;
+   }
+  }
+}
+

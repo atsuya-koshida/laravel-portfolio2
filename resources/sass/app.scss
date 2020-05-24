@@ -1,0 +1,22 @@
+@import "reset";
+@import "variables";
+@import "error";
+@import "btn";
+@import "home";
+@import "header";
+@import "sidebar";
+@import "drawer";
+@import "card";
+@import "posts";
+@import "form";
+@import "user";
+@import "groups";
+@import "post_table";
+@import "follow";
+@import "paginate";
+@import "checkbox";
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+}

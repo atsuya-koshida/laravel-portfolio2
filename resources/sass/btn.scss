@@ -1,0 +1,129 @@
+.main-btn {
+  display: inline-block;
+  position: relative;
+  width: 200px;
+  padding: 0.8em;
+  text-align: left;
+  text-decoration: none;
+  color: #1b1b1b;
+  background: #fff;
+  border-bottom: 1px solid #1b1b1b;
+  transition: transform ease 0.3s;
+
+  & span {
+    position: absolute;
+    right: 15px;
+    display: inline-block;
+    text-decoration: none;
+    transition: transform ease 0.3s;
+  }
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: none;
+
+    & span {
+        cursor: pointer;
+        text-decoration: none;
+        transform: translateX(6px);
+    }
+  }
+
+  &.blue {
+    text-align: center;
+    font-size: 100%;
+    background-color: $color_blue;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 30px;
+
+    &.small {
+      width: 65px;
+    }
+
+    &.chat {
+      width: 100px;
+      border-radius: 5px;
+      margin-left: 10px;
+    }
+  }
+
+  &.green {
+    text-align: center;
+    font-size: 100%;
+    background-color: $color_prime;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 30px;
+
+    &.small {
+      width: 65px;
+    }
+
+    &.chat {
+      width: 100px;
+      border-radius: 5px;
+      margin-left: 10px;
+    }
+  }
+}
+
+.circle-btn {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  line-height: 20px;
+  padding: 5px;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  transition: 0.2s;
+
+  &:hover {
+      box-shadow: none;
+  }
+}
+
+.circle-btn-blue {
+  background: $color_blue;
+  border: solid 5px $color_blue;
+}
+
+.edit-btn {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 4px;
+  color: #ffffff;
+  background-image: linear-gradient(#6795fd 0%, #67ceff 100%);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  border-bottom: solid 3px #5e7fca;
+
+  &:active {
+      transform: translateY(4px);
+      box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+      border-bottom: none;
+  }
+}
+
+.delete-btn {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 4px;
+  color: #ffffff;
+  background-image: linear-gradient(#eb1111 0%, #ff6767 100%);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+  border-bottom: solid 3px #b32a2a;
+
+  &:active {
+      transform: translateY(4px);
+      box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+      border-bottom: none;
+  }
+}

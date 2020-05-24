@@ -1,0 +1,206 @@
+// チャット画面
+.chat-wrapper {
+  width: 100vw;
+  height: (100vh - #{$headerHeight});
+  display: flex;
+  padding-top: $headerHeight;
+
+  .chat-main {
+    width: 78%;
+
+    .chat-header {
+      height: 100px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #b5b5b5;
+      box-sizing: border-box;
+      padding: 0 40px;
+
+      &__left {
+        margin-top: 35px;
+
+        .group-name {
+          font-size: 20px;
+          margin: 0 0 15px;
+        }
+
+        .group-member {
+          font-size: 11px;
+          color: #aaaaaa;
+        }
+      }
+
+      &__right {
+        margin-top: 30px;
+      }
+    }
+  }
+
+  .chat-messages {
+    height: calc(100vh - 100px - 90px);
+    padding: 0 40px;
+    overflow: scroll;
+
+    .message {
+      position: relative;
+      min-width: 120px;
+      max-width: 100%;
+      font-size: 16px;
+      border-radius: 15px;
+      color: #555;
+      background: #e0edff;
+      margin: 1.5em 0 1.5em 15px;
+      padding: 20px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: -30px;
+        margin-top: -15px;
+        border: 15px solid transparent;
+        border-right: 15px solid #e0edff;
+      }
+      
+      &.green {
+        background: rgb(153, 245, 205);
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 100%;
+          margin-top: -15px;
+          border: 15px solid transparent;
+          border-left: 15px solid rgb(153, 245, 205);
+        }
+      }
+
+      &__info {
+        display: flex;
+        margin-bottom: 10px;
+  
+        .user-name {
+          font-size: 16px;
+          font-weight: bold;
+        }
+  
+        .send-time {
+          font-size: 12px;
+          color: #aaaaaa;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  .chat-form-box {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 22%;
+    height: 90px;
+    background-color: #fff;
+    border-top: 1px solid #b5b5b5;
+    box-sizing: border-box;
+    padding: 20px 40px;
+
+    .chat-form {
+      display: flex;
+      box-sizing: border-box;
+
+      .chat-message {
+        width: 100%;
+        height: 50px;
+        padding: 0 40px 0 10px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .chat-submit {
+        width: 100px;
+        height: 50px;
+        background: #1da1f3;
+        color: white;
+        border-radius: 4px;
+        padding: 0 30px;
+        margin-left: 15px;
+      }
+    }
+  }
+  
+  .chat-side {
+    width: 22%;
+    border-right: 1px solid #b5b5b5;
+    box-sizing: border-box;
+    
+    &__nav {
+      height: 100px;
+      line-height: 100px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #b5b5b5;
+      box-sizing: border-box;
+      padding: 0 20px;
+      margin: 0 auto;
+  
+      p {
+        font-weight: bold;
+      }
+    }
+  
+    .groups {
+      height: calc(100vh - 100px);
+      padding: 20px 20px 0;
+      overflow: scroll;
+  
+      .group {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid rgb(181, 181, 181);
+        margin-bottom: 10px;
+
+        &__image {
+          padding-bottom: 10px;
+  
+          img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+          }
+        }
+
+        a {
+          text-decoration: none;
+        }
+  
+        &__name {
+          font-size: 15px;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+}
+
+// グループ作成
+
+.group-section {
+  margin-top: 20px;
+
+  &__title {
+    text-align: center;
+    p {
+      font-size: 20px;
+      border-bottom: 1px solid rgb(181, 181, 181);
+      padding-bottom: 10px;
+    }
+  }
+}
+
+.new-group {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  padding: 50px;
+}
