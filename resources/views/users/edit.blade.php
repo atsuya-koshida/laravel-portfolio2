@@ -43,8 +43,7 @@
                   @endforeach
                 </select>
               </div>
-              <div class="text-box">
-                <p style="margin-bottom: 10px;">ポジション</p>
+              {{-- <div class="text-box">
                 <select id="select" name="positions[]" multiple="multiple" placeholder="ポジションを選択できます">
                   @foreach ($sorted_positions as $position)
                   @if (empty($position->pivot))
@@ -54,6 +53,20 @@
                   @endif
                   @endforeach
                 </select>              
+              </div> --}}
+              <p style="width: 90%; margin: 0 auto 10px;">ポジション</p>
+              <div class="custom-checkboxes">
+                @foreach ($sorted_positions as $position)
+                @if (empty($position->pivot))
+                <label>
+                  <input type="checkbox" name="positions[]" value="{{ $position->id }}">{{ $position->name }}
+                </label>
+                @else
+                <label>
+                  <input type="checkbox" name="positions[]" value="{{ $position->id }}" checked>{{ $position->name }}
+                </label>
+                @endif
+                @endforeach
               </div>
               <div class="submit-box">
                 <input type="submit" value="更新する" class="main-btn blue">

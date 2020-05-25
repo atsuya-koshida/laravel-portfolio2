@@ -44,9 +44,9 @@
             <a href="{{ route('user.edit', ['user' => Auth::id()]) }}">プロフィール編集</a>
           </li>
           <li class="drawer-menu__item">
-            <form name="logout-drawer" id="logout-button" method="POST" action="{{ route('logout') }}">
+            <form name="logoutd" id="logout-button" method="POST" action="{{ route('logout') }}">
               @csrf
-              <a href="javascript:logout-drawer.submit()">ログアウト</a>
+              <a href="javascript:logoutd.submit()">ログアウト</a>
             </form>
           </li>
           @endauth
