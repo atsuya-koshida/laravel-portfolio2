@@ -6,7 +6,32 @@
 <div class="wrapper">
   @include('shared/header')
   <div class="chat-wrapper">
-    @include('shared/chat_side')
+    <div class="chat-side show">
+      <div class="chat-side__nav">
+        <p>{{ Auth::user()->name }}</p>
+        <div>
+          <a href="{{ route('group.create') }}" class="circle-btn circle-btn-blue"><i class="fas fa-plus"></i></a>
+        </div>
+      </div>
+      <div class="groups">
+        @foreach ($groups as $group_item)
+        <div class="group">
+          <div style="padding-top: 10px;">
+            <a href="{{ route('group.show', ['group' => $group_item]) }}">
+              <p class="group__name">{{ mb_strimwidth($group_item->name, 0, 15, "...", 'UTF-8') }}</p>
+            </a>
+          </div>
+          <div class="group__image">
+            @if ($group_item->image !== null)
+            <img src="/storage/images/{{ $group_item->image }}" alt="noimage">
+            @else
+            <img src="/images/noimageblack.png" alt="noimage">
+            @endif
+          </div>
+        </div>
+        @endforeach
+      </div>
+    </div>
     
     <div class="chat-main">
       <div class="chat-header">
