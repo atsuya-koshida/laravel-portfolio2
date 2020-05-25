@@ -2,7 +2,7 @@
   <div class="header__inner">
     <div class="header__left-box">
       <p class="main-title">
-        <a href="{{ route('home') }}">Basket Ball</a>
+        <a href="{{ route('home') }}">Play Ground</a>
       </p>
     </div>
     <ul class="header__right-box">
