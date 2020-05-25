@@ -47,3 +47,18 @@ jobs:
 
       - run: npm run dev
       - run: php ./vendor/bin/phpunit
+  deploy:
+    docker:
+      - image: circleci/php:7.2-node-browsers
+    steps:
+      - add_ssh_keys
+      - run:
+          name: deploy
+          command: |
+            ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd laravel-ci && \
+              git pull origin master && \
+              composer install -n --no-dev --prefer-dist && \
+              npm ci && \
+              npm run prod && \
+              php artisan migrate --force && \
+              php artisan config:cache"
