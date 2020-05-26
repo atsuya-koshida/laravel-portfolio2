@@ -23,7 +23,7 @@
           </div>
           <div class="group__image">
             @if ($group_item->image !== null)
-            <img src="/storage/images/{{ $group_item->image }}" alt="noimage">
+            <img src="{{ $group_item->image }}" alt="noimage">
             @else
             <img src="/images/noimageblack.png" alt="noimage">
             @endif
@@ -57,7 +57,7 @@
         @endif
           <div class="message__image">
             @if ($message->user->image !== null)
-            <img src="/storage/images/{{ $message->user->image }}" alt="noimage">
+            <img src="{{ $message->user->image }}" alt="noimage">
             @else
             <img src="/images/noimageblack.png" alt="noimage">
             @endif

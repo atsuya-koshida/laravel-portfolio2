@@ -8,6 +8,7 @@ use App\Position;
 use App\Prefecture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Storage;
 
 class UserController extends Controller
 {
@@ -58,13 +59,13 @@ class UserController extends Controller
     {
         $user->fill($request->except(['image']));
         $user->prefecture_id = $request->prefecture_id;
-        $user->save();
 
         if(!is_null($request['image'])){
-            $file_path = $request->file('image')->store('public/images');
-            $user->image = basename($file_path);
-            $user->save();
+            $file_path = Storage::disk('s3')->putfile('myprefix', $request->file('image'), 'public');
+            $user->image = Storage::disk('s3')->url($file_path);
         }
+
+        $user->save();
         $user->positions()->sync($request->positions);
 
         return redirect()->route('user.show', [

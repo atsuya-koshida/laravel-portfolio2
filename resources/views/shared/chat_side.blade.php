@@ -15,7 +15,7 @@
       </div>
       <div class="group__image">
         @if ($group->image !== null)
-        <img src="/storage/images/{{ $group->image }}" alt="noimage">
+        <img src="{{ $group->image }}" alt="noimage">
         @else
         <img src="/images/noimageblack.png" alt="noimage">
         @endif

@@ -1,7 +1,7 @@
 <div class="blog-card">
   <div class="meta">
     @if ($post->image !== null)
-    <img src="/storage/images/{{ $post->image }}" class="photo">
+    <img src="{{ $post->image }}" class="photo">
     @else
     <img src="/images/basket6.jpeg" class="photo">
     @endif
