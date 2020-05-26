@@ -9,6 +9,7 @@ use App\Prefecture;
 use App\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Storage;
 
 class PostController extends Controller
 {
@@ -73,8 +74,8 @@ class PostController extends Controller
         $post->prefecture_id = $request->prefecture_id;
 
         if(!is_null($request['image'])){
-            $file_path = $request->file('image')->store('public/images');
-            $post->image = basename($file_path);
+            $file_path = Storage::disk('s3')->putfile('myprefix', $request->file('image'), 'public');
+            $post->image = Storage::disk('s3')->url($file_path);
         }
         
         $post->save();
@@ -113,8 +114,8 @@ class PostController extends Controller
         $post->prefecture_id = $request->prefecture_id;
 
         if(!is_null($request['image'])){
-            $file_path = $request->file('image')->store('public/images');
-            $post->image = basename($file_path);
+            $file_path = Storage::disk('s3')->putfile('myprefix', $request->file('image'), 'public');
+            $post->image = Storage::disk('s3')->url($file_path);
         }
         
         $post->save();

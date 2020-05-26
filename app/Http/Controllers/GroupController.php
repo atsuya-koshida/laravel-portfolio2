@@ -8,6 +8,7 @@ use App\Http\Requests\GroupRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Storage;
 
 class GroupController extends Controller
 {
@@ -50,8 +51,8 @@ class GroupController extends Controller
         $group->fill($request->all());
         $users = $request->users;
         if(!is_null($request['image'])){
-            $file_path = $request->file('image')->store('public/images');
-            $group->image = basename($file_path);
+            $file_path = Storage::disk('s3')->putfile('myprefix', $request->file('image'), 'public');
+            $group->image = Storage::disk('s3')->url($file_path);
         }
         $group->save();
         $group->users()->attach(Auth::user());
@@ -82,15 +83,16 @@ class GroupController extends Controller
         $user = Auth::user();
         if($user instanceof User) {
             $group->fill($request->all());
+
+            if(!is_null($request['image'])){
+                $file_path = Storage::disk('s3')->putfile('myprefix', $request->file('image'), 'public');
+                $group->image = Storage::disk('s3')->url($file_path);
+            }
+            
             $group->save();
             $group->users()->sync($request->users);
             $group->users()->attach($user);
 
-            if(!is_null($request['image'])){
-                $file_path = $request->file('image')->store('public/images');
-                $group->image = basename($file_path);
-                $group->save();
-            }
             return redirect()->route('group.show', [
                 'group' => $group,
             ]);
