@@ -1329,6 +1329,7 @@ textarea::placeholder {
 }
 
 .chat-wrapper .chat-messages .message {
+  display: flex;
   position: relative;
   min-width: 120px;
   max-width: 100%;
@@ -1378,6 +1379,17 @@ textarea::placeholder {
   font-size: 12px;
   color: #aaaaaa;
   margin-left: 10px;
+}
+
+.chat-wrapper .chat-messages .message__image {
+  margin-right: 10px;
+}
+
+.chat-wrapper .chat-messages .message__image img {
+  width: 50px;
+  height: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .chat-wrapper .chat-form-box {
