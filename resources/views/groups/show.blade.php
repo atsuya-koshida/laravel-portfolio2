@@ -56,8 +56,8 @@
         <div class="message green">
         @endif
           <div class="message__image">
-            @if ($group_item->image !== null)
-            <img src="/storage/images/{{ $group_item->image }}" alt="noimage">
+            @if ($message->user->image !== null)
+            <img src="/storage/images/{{ $message->user->image }}" alt="noimage">
             @else
             <img src="/images/noimageblack.png" alt="noimage">
             @endif
@@ -78,7 +78,7 @@
           @csrf
           <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
           <input type="hidden" name="group_id" value="{{ $group->id }}">
-          <input type="text" name="text" class="chat-message" placeholder="メッセージを入力して下さい">
+          <input type="text" name="text" required class="chat-message" placeholder="メッセージを入力して下さい">
           <input type="submit" value="送信する" class="main-btn blue chat">
         </form>
       </div>
