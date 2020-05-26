@@ -55,11 +55,20 @@
         @else
         <div class="message green">
         @endif
-          <div class="message__info">
-            <p class="user-name">{{ $message->user->name }}</p>
-            <p class="send-time">{{ $message->created_at->format('Y/m/d H:i') }}</p>
+          <div class="message__image">
+            @if ($group_item->image !== null)
+            <img src="/storage/images/{{ $group_item->image }}" alt="noimage">
+            @else
+            <img src="/images/noimageblack.png" alt="noimage">
+            @endif
           </div>
-          <div class="message__desc">{{ $message->text }}</div>
+          <div>
+            <div class="message__info">
+              <p class="user-name">{{ $message->user->name }}</p>
+              <p class="send-time">{{ $message->created_at->format('Y/m/d H:i') }}</p>
+            </div>
+            <div class="message__desc">{{ $message->text }}</div>
+          </div>
         </div>
         @endforeach
       </div>
