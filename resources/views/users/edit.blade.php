@@ -15,11 +15,11 @@
               @csrf
               <div class="text-box">
                 <label>名前</label>
-                <input type="text" placeholder="名前を入力して下さい" required value="{{ $user->name ?? old('name') }}">
+                <input type="text" name="name" placeholder="名前を入力して下さい" required value="{{ $user->name ?? old('name') }}">
               </div>
               <div class="text-box">
                 <label>メールアドレス</label>
-                <input type="email" placeholder="メールアドレスを入力して下さい" required value="{{ $user->email ?? old('email') }}">
+                <input type="email" name="email" placeholder="メールアドレスを入力して下さい" required value="{{ $user->email ?? old('email') }}">
               </div>
               <div class="text-box">
                 <label>生年月日</label>
@@ -43,17 +43,6 @@
                   @endforeach
                 </select>
               </div>
-              {{-- <div class="text-box">
-                <select id="select" name="positions[]" multiple="multiple" placeholder="ポジションを選択できます">
-                  @foreach ($sorted_positions as $position)
-                  @if (empty($position->pivot))
-                  <option value="{{ $position->id }}">{{ $position->name }}</option>
-                  @else
-                  <option value="{{ $position->id }}" selected>{{ $position->name }}</option>
-                  @endif
-                  @endforeach
-                </select>              
-              </div> --}}
               <p style="width: 90%; margin: 0 auto 10px;">ポジション</p>
               <div class="custom-checkboxes">
                 @foreach ($sorted_positions as $position)

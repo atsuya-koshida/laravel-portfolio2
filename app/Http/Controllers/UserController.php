@@ -9,6 +9,7 @@ use App\Prefecture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Storage;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -40,37 +41,45 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        $positions = Position::all();
-        $prefectures = Prefecture::all();
-        $checked_positions = $user->positions;
-        $unchecked_positions = $positions->diff($checked_positions);
-        $merged_positions = $unchecked_positions->merge($checked_positions);
-
-        $sorted_positions = $merged_positions->sortBy('id');
-        return view('users.edit', [
-            'user' => $user,
-            'positions' => $positions,
-            'sorted_positions' => $sorted_positions,
-            'prefectures' => $prefectures,
-        ]);
+        if ($user->id === Auth::user()->id) {
+            $positions = Position::all();
+            $prefectures = Prefecture::all();
+            $checked_positions = $user->positions;
+            $unchecked_positions = $positions->diff($checked_positions);
+            $merged_positions = $unchecked_positions->merge($checked_positions);
+    
+            $sorted_positions = $merged_positions->sortBy('id');
+            return view('users.edit', [
+                'user' => $user,
+                'positions' => $positions,
+                'sorted_positions' => $sorted_positions,
+                'prefectures' => $prefectures,
+            ]);
+        } else {
+            return redirect('/');
+        }
     }
 
     public function update(Request $request, User $user)
     {
-        $user->fill($request->except(['image']));
-        $user->prefecture_id = $request->prefecture_id;
-
-        if(!is_null($request['image'])){
-            $file_path = Storage::disk('s3')->putfile('myprefix', $request->file('image'), 'public');
-            $user->image = Storage::disk('s3')->url($file_path);
+        if ($user->id === Auth::user()->id) {
+            $user->fill($request->except(['image']));
+            $user->prefecture_id = $request->prefecture_id;
+    
+            if(!is_null($request['image'])){
+                $file_path = Storage::disk('s3')->putfile('myprefix', $request->file('image'), 'public');
+                $user->image = Storage::disk('s3')->url($file_path);
+            }
+    
+            $user->save();
+            $user->positions()->sync($request->positions);
+    
+            return redirect()->route('user.show', [
+                'user' => $user,
+            ]);
+        } else {
+            return redirect('/');
         }
-
-        $user->save();
-        $user->positions()->sync($request->positions);
-
-        return redirect()->route('user.show', [
-            'user' => $user,
-        ]);
     }
 
     public function checkedYourself($request, $user) 
