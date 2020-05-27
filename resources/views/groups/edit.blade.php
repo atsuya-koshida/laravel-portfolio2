@@ -42,6 +42,13 @@
               <div class="submit-box">
                 <input type="submit" value="更新する" class="main-btn blue">
               </div>
+              <form method="POST" action="{{ route('group.destroy', ['group' => $group]) }}">
+                @csrf
+                @method('DELETE')
+                <div class="submit-box">
+                  <button type="submit" onclick='return confirm("グループ「{{ $group->name }}」を本当に削除しますか？");' class="main-btn red">グループを削除する</button>
+                </div>
+              </form>
             </form>
           </div>
         </div>

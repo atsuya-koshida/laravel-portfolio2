@@ -211,6 +211,10 @@ select {
   transition: transform ease 0.3s;
 }
 
+.main-btn:focus {
+  outline: none;
+}
+
 .main-btn:hover {
   cursor: pointer;
   text-decoration: none;
@@ -236,6 +240,25 @@ select {
 }
 
 .main-btn.blue.chat {
+  width: 100px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.main-btn.red {
+  text-align: center;
+  font-size: 100%;
+  background-color: red;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 30px;
+}
+
+.main-btn.red.small {
+  width: 65px;
+}
+
+.main-btn.red.chat {
   width: 100px;
   border-radius: 5px;
   margin-left: 10px;
