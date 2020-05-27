@@ -45,7 +45,7 @@
           </p>
           </div>
         <div class="chat-header__right">
-          <a href="{{ route('group.edit', ['group' => $group]) }}" class="main-btn blue small">編集</a>
+          <a href="{{ route('group.edit', ['group' => $group]) }}" class="main-btn blue small">設定</a>
         </div>
       </div>
       <div class="chat-messages">
