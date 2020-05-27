@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="submit-box">
-                    <input type="submit" value="登録する" class="submit-btn">
+                    <input type="submit" value="登録する" class="main-btn blue">
                 </div>
             </form>
           </div>
