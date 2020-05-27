@@ -22,7 +22,7 @@
                 <img src="/images/noimageblack.png" alt="noimage">
                 @endif
               </div>
-              <p>{{ $user->name }}</p>
+              <p><a href="{{ route('user.show', ['user' => $user->id]) }}">{{ $user->name }}</a></p>
             </div>
             {{-- フォローボタン --}}
             @if( Auth::id() !== $user->id )
